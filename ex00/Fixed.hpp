@@ -1,38 +1,30 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 12:55:02 by joterrett         #+#    #+#             */
-/*   Updated: 2024/01/18 13:34:21 by joterrett        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef [NOM_CLASSE]_HPP
-#define [NOM_CLASSE]_HPP
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 #include <iostream>
 #include <string>
-// Inclure d'autres bibliothèques nécessaires
 
-class [NomClasse] {
+class Fixed {
     public:
-        // Constructeurs
-        [NomClasse]();
-        [NomClasse](const [NomClasse] &source);
+        // Constructeur par default
+        Fixed();
 
+        // Constructeur par copie
+        Fixed(const Fixed &src);
+
+        // Surcharge de l operateur d affectation 
+        Fixed &operator=(const Fixed &source);
+        
         // Destructeur
-        ~[NomClasse]();
-
-        // Opérateur d'affectation
-        [NomClasse] &operator=(const [NomClasse] &source);
+        ~Fixed();
 
         // Autres méthodes publiques
+        int getRawBits(void) const;
+        void setRawBits(int const raw);
 
     private:
-        // Attributs privés
+        int fixed_nbr;
+        static const int point_place = 8;
 };
 
-#endif /* ![NOM_CLASSE]_HPP */
+#endif
