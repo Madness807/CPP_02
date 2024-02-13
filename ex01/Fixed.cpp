@@ -3,7 +3,6 @@
 
 // Methode
 int Fixed::getRawBits(void) const{
-    std::cout << "getRawBits member function called" << std::endl;
     return this->fixed_nbr;
 }
 void Fixed::setRawBits(int const raw){
@@ -21,18 +20,19 @@ int Fixed::toInt(void) const {
 // constructeur par copie
 Fixed::Fixed(const Fixed &src){
     std::cout << "Copy constructor called" << std::endl;
-    this->fixed_nbr = src.fixed_nbr;
+    *this = src;
 }
 
 // surchare d operateur
 Fixed &Fixed::operator=(const Fixed &source) {
     std::cout << "Copy assigment operator called" << std::endl;
-    if (this == &source) {
-        return *this;
+    if(this != &source)
+    {
+        fixed_nbr = source.getRawBits();
     }
-    this->fixed_nbr = source.getRawBits();
     return *this;
 }
+
 std::ostream& operator<<(std::ostream& out, const Fixed& source) {
     out << source.toFloat();
     return out;
@@ -51,7 +51,7 @@ Fixed::Fixed(int const num) {
 
 Fixed::Fixed(float const num) {
     std::cout << "Float constructor called" << std::endl;
-    this->fixed_nbr = roundf(num * (1 << this->point_place));
+    this->fixed_nbr = (int)roundf(num * (1 << this->point_place));
 }
 
 
